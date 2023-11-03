@@ -5,7 +5,7 @@ public class Solution295 {
   PriorityQueue<Double> pq1 = new PriorityQueue<>();
   PriorityQueue<Double> pq2 = new PriorityQueue<>(Collections.reverseOrder());
 
-  public MedianFinder() {
+  public Solution295() {
         
     }
 

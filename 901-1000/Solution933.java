@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Solution933 {
   public ArrayList<Integer> calls;
 
-    public RecentCounter() {
+    public Solution933() {
         calls = new ArrayList<>();
     }
     
