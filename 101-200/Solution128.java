@@ -25,7 +25,7 @@ class Solution128 {
             } else {
                 numCon = 1;
             }
-            
+
             currentTop = newTop;
 
             if (numCon > maxCon) {
