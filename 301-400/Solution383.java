@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution383 {
   public boolean canConstruct(String ransomNote, String magazine) {
     Map<Character, Integer> map = new HashMap<>();
