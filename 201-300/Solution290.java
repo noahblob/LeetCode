@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Solution290 {
   public boolean wordPattern(String pattern, String s) {
     // find how many unique words are in s, and compare that to how many unique
