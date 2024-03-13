@@ -3,23 +3,24 @@ import java.util.List;
 
 public class Solution1431 {
   public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-    List<Boolean> result = new ArrayList<>();
-    int maxCandies = 0;
+    List<Boolean> out = new ArrayList<>();
+
+    // find max candies
+    int max = 0;
+    for (int candy : candies) {
+      if (candy > max) {
+        max = candy;
+      }
+    }
 
     for (int candy : candies) {
-      if (candy > maxCandies) {
-        maxCandies = candy;
-      }
-    }
-
-    for (int i = 0; i < candies.length; i++) {
-      if (candies[i] + extraCandies >= maxCandies) {
-        result.add(true);
+      if (candy + extraCandies >= max) {
+        out.add(true);
       } else {
-        result.add(false);
+        out.add(false);
       }
     }
 
-    return result;
+    return out;
   }
 }

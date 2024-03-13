@@ -1,48 +1,43 @@
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Solution345 {
   public String reverseVowels(String s) {
-    // split string into an array
+    Set<Character> vowels = new HashSet<>();
+    vowels.add('a');
+    vowels.add('e');
+    vowels.add('i');
+    vowels.add('o');
+    vowels.add('u');
+    vowels.add('A');
+    vowels.add('E');
+    vowels.add('I');
+    vowels.add('O');
+    vowels.add('U');
+
+    int p1 = 0;
+    int p2 = s.length() - 1;
     char[] sArr = s.toCharArray();
 
-    // arraylist to check against for vowels
-    ArrayList<Character> vowels = new ArrayList<Character>() {
-      {
-        add('a');
-        add('e');
-        add('i');
-        add('o');
-        add('u');
-        add('A');
-        add('E');
-        add('I');
-        add('O');
-        add('U');
-      }
-    };
-
-    int start = 0;
-    int end = sArr.length - 1;
-
-    while (start < end) {
-
-      while (start < end && !vowels.contains(sArr[start])) {
-        start++;
+    while (p1 < p2) {
+      while (p1 < p2 && !vowels.contains(sArr[p1])) {
+        p1++;
       }
 
-      while (start < end && !vowels.contains(sArr[end])) {
-        end--;
+      while (p1 < p2 && !vowels.contains(sArr[p2])) {
+        p2--;
       }
 
-      char temp = sArr[start];
-      sArr[start] = sArr[end];
-      sArr[end] = temp;
-
-      start++;
-      end--;
+      swap(sArr, p1, p2);
+      p1++;
+      p2--;
     }
-
     return new String(sArr);
+  }
 
+  public void swap(char[] sArr, int i, int j) {
+    char temp = sArr[i];
+    sArr[i] = sArr[j];
+    sArr[j] = temp;
   }
 }

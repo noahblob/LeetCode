@@ -1,27 +1,19 @@
 public class Solution74 {
   public boolean searchMatrix(int[][] matrix, int target) {
-
-    int n = Integer.MAX_VALUE;
-
-    if (matrix[0][0] == target) {
-      return true;
-    }
-    for (int i = 0; i < matrix.length; i++) {
-      int low = 0;
-      int high = matrix[i].length - 1;
-      while (low <= high) {
-        int mid = low + ((high - low) / 2);
-        if (matrix[i][mid] < target) {
-          low = mid + 1;
-        } else if (matrix[i][mid] > target) {
-          high = mid - 1;
-        } else {
-          n = target;
-          break;
-        }
+    int start = 0;
+    int end = matrix[0].length - 1;
+    while (start < matrix.length && end > -1) {
+      int current = matrix[start][end];
+      if (current == target) {
+        return true;
+      } else if (current < target) {
+        // jump down a row
+        start++;
+      } else { // current > target
+        // move across in current row
+        end--;
       }
     }
-    System.out.println(n);
-    return n == target;
+    return false;
   }
 }

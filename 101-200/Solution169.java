@@ -1,19 +1,25 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution169 {
   public int majorityElement(int[] nums) {
-    int count = 0;
-    int majority = nums[0];
-    for (int i = 0; i < nums.length; i++) {
-      int cnt = 0;
-      for (int j = i + 1; j < nums.length; j++) {
-        if (nums[i] == nums[j]) {
-          cnt++;
-        }
-      }
-      if (cnt > count) {
-        count = cnt;
-        majority = nums[i];
+    Map<Integer, Integer> map = new HashMap<>();
+
+    for (int num : nums) {
+      if (map.containsKey(num)) {
+        int occ = map.get(num);
+        occ++;
+        map.put(num, occ);
+      } else {
+        map.put(num, 1);
       }
     }
-    return majority;
+
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+      if (entry.getValue() > (nums.length / 2)) {
+        return entry.getKey();
+      }
+    }
+    return -1;
   }
 }
