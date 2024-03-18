@@ -1,37 +1,37 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Solution1161 {
-  Map<Integer, Integer> levelSum = new HashMap<>();
-
   public int maxLevelSum(TreeNode root) {
-    maxSum(root, 1, levelSum);
+    Queue<TreeNode> q = new LinkedList<>();
+    q.add(root);
+    int maxLevel = 0;
+    int curLevel = 0;
     int maxNum = Integer.MIN_VALUE;
-    int maxLevel = 1;
+    while (!q.isEmpty()) {
+      // move down a level
+      curLevel++;
+      int size = q.size();
+      int curSum = 0;
+      for (int i = 0; i < size; i++) {
+        // BFS searches per layer, iterate over every element on the current layer
+        TreeNode node = q.remove();
+        curSum += node.val;
+        // start adding next layer to queue
+        if (node.left != null) {
+          q.add(node.left);
+        }
 
-    for (Map.Entry<Integer, Integer> entry : levelSum.entrySet()) {
-      if (entry.getValue() > maxNum) {
-        maxNum = entry.getValue();
-        maxLevel = entry.getKey();
+        if (node.right != null) {
+          q.add(node.right);
+        }
+      }
+      if (curSum > maxNum) {
+        maxNum = curSum;
+        maxLevel = curLevel;
       }
     }
-
     return maxLevel;
-  }
-
-  public void maxSum(TreeNode root, int level, Map<Integer, Integer> levelSum) {
-    if (root == null) {
-      return;
-    }
-
-    if (!levelSum.containsKey(level)) {
-      levelSum.put(level, root.val);
-    } else {
-      levelSum.put(level, levelSum.get(level) + root.val);
-    }
-
-    maxSum(root.left, level + 1, levelSum);
-    maxSum(root.right, level + 1, levelSum);
   }
 }
 
