@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Solution2300 {
   public int[] successfulPairs(int[] spells, int[] potions, long success) {
     // spells[i] * potions[j] >= success
